@@ -13,7 +13,7 @@ public class ControlSky : MonoBehaviour
     public Color dayFog;
     public Color nightFog;
     //public string time;
-    public float exposure = (float)0.89;
+    public float exposure = 0.89f;
     float x;
 
     // Update is called once per frame
@@ -26,17 +26,17 @@ public class ControlSky : MonoBehaviour
     {
         //UnityEngine.GUI.Lable(new Rect(5,5,80,20),time);
         //Debug.Log(timeTxt.GetComponent<TimeManager>().min);
-        if(timeTxt.GetComponent<TimeManager>().hour==0){
+        if(timeTxt.GetComponent<TimeManager>().date.hour==0){
             RenderSettings.skybox.SetFloat("_Exposure",exposure);
         }
-        if(5<timeTxt.GetComponent<TimeManager>().hour&&timeTxt.GetComponent<TimeManager>().hour<19){//UnityEngine.GUI.Button(new Rect(5,5,80,20),"Day")){
+        if(5<timeTxt.GetComponent<TimeManager>().date.hour&&timeTxt.GetComponent<TimeManager>().date.hour<19){//UnityEngine.GUI.Button(new Rect(5,5,80,20),"Day")){
             RenderSettings.skybox = dayMat;
             RenderSettings.fogColor = dayFog;
             dayLight.SetActive(true);
             x += Time.deltaTime ;
             dayLight.transform.rotation = Quaternion.Euler(x,0,0);
             nightLight.SetActive(false);
-            if((int)timeTxt.GetComponent<TimeManager>().hour>16){
+            if((int)timeTxt.GetComponent<TimeManager>().date.hour>16){
                 exposure-=(float)0.000001;
                 RenderSettings.skybox.SetFloat ("_Exposure",exposure);
             }
