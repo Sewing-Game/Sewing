@@ -9,16 +9,21 @@ public class ControlSky : MonoBehaviour
     public Material nightMat;
     public GameObject dayLight;
     public GameObject nightLight;
-    public GameObject timeTxt;
+    public GameObject time;
+    public TimeManager tm;
     public Color dayFog;
     public Color nightFog;
-    //public string time;
     public float exposure = 0.89f;
+    public Text TimeTxt;
     float x;
-
+    
+    void Start(){
+        tm = time.GetComponent<TimeManager>();
+    }
     // Update is called once per frame
     void Update()
     {
+        TimeTxt.text = string.Format("{0}Y {1}M {2}D {3:D2}H:{4:D2}M",(int)tm.date.year,(int)tm.date.month,(int)tm.date.day,(int)tm.date.hour,(int)tm.date.min);
         RenderSettings.skybox.SetFloat("_Rotation",Time.time*0.5f);
     }
 
@@ -26,17 +31,17 @@ public class ControlSky : MonoBehaviour
     {
         //UnityEngine.GUI.Lable(new Rect(5,5,80,20),time);
         //Debug.Log(timeTxt.GetComponent<TimeManager>().min);
-        if(timeTxt.GetComponent<TimeManager>().date.hour==0){
+        if(tm.date.hour==0){
             RenderSettings.skybox.SetFloat("_Exposure",exposure);
         }
-        if(5<timeTxt.GetComponent<TimeManager>().date.hour&&timeTxt.GetComponent<TimeManager>().date.hour<19){//UnityEngine.GUI.Button(new Rect(5,5,80,20),"Day")){
+        if(5<tm.date.hour&&tm.date.hour<19){//UnityEngine.GUI.Button(new Rect(5,5,80,20),"Day")){
             RenderSettings.skybox = dayMat;
             RenderSettings.fogColor = dayFog;
             dayLight.SetActive(true);
             x += Time.deltaTime ;
             dayLight.transform.rotation = Quaternion.Euler(x,0,0);
             nightLight.SetActive(false);
-            if((int)timeTxt.GetComponent<TimeManager>().date.hour>16){
+            if(tm.date.hour>16){
                 exposure-=(float)0.000001;
                 RenderSettings.skybox.SetFloat ("_Exposure",exposure);
             }

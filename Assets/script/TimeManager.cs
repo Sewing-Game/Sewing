@@ -30,7 +30,6 @@ public class TimeManager : MonoBehaviour
     private int initmonth=4;
     private int initday=1;
     public float speed = 1.2f;
-    public Text TimeTxt;
     public float _totalTime;
     public Date date;
     
@@ -51,7 +50,6 @@ public class TimeManager : MonoBehaviour
     void Update()
     {
         _totalTime += Time.deltaTime * speed;//Time.timeScale;
-        TimeTxt.text = string.Format("{0}Y {1}M {2}D {3:D2}H:{4:D2}M",(int)date.year,(int)date.month,(int)date.day,(int)date.hour,(int)date.min);
         double t = _totalTime;
         date.year = inityear+(int)(t / yearSecond);
         t %= yearSecond;

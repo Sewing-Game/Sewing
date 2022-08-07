@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2071198040}
-  m_IndirectSpecularColor: {r: 0.5300326, g: 0.6024862, b: 0.6713635, a: 1}
+  m_IndirectSpecularColor: {r: 0.40980324, g: 0.46503437, b: 0.51792496, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -330,10 +330,12 @@ MonoBehaviour:
   nightMat: {fileID: 2100000, guid: d4454f71d85928744be7771e2143dab7, type: 2}
   dayLight: {fileID: 2071198039}
   nightLight: {fileID: 1418329569}
-  timeTxt: {fileID: 1649943804}
-  dayFog: {r: 0, g: 0, b: 0, a: 0}
+  time: {fileID: 1649943804}
+  tm: {fileID: 0}
+  dayFog: {r: 0.8388039, g: 0.9622642, b: 0.9252232, a: 0}
   nightFog: {r: 0, g: 0, b: 0, a: 0}
   exposure: 0.89
+  TimeTxt: {fileID: 1649943807}
 --- !u!1 &1418329569
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,18 +481,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae6676642bb48c24e87418199741ec91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sec: 0
-  weekday: 0
-  weekend: 0
-  year: 102
-  month: 4
-  day: 1
-  min: 0
-  hour: 0
-  TimeTxt: {fileID: 1649943807}
-  time: 
   speed: 960
-  exposure: 0.89
+  _totalTime: 0
+  date:
+    year: 0
+    month: 0
+    day: 0
+    hour: 0
+    min: 0
+    sec: 0
+    weekday: 0
+    weekend: 0
 --- !u!114 &1649943807
 MonoBehaviour:
   m_ObjectHideFlags: 0
