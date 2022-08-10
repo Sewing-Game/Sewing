@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Draw.unity
     guid: ad2e891ed4b29ad449628f67f51a4998
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/FloorOpacityTestScene.unity
+    guid: 1957bdac719b2f44f84c2c0b296593a5
   m_configObjects: {}

@@ -7,6 +7,8 @@ public class PixelManage : MonoBehaviour
 {
     // Start is called before the first frame update
     SpriteRenderer sRend;
+    int x;
+    int y;
     private void Start()
     {
         sRend = GetComponent<SpriteRenderer>();
@@ -16,7 +18,10 @@ public class PixelManage : MonoBehaviour
     {
         if(Input.GetMouseButton(0))
         {
-            sRend.color = transform.parent.GetComponent<GridManger>().GetCurrentColor();
+            Vector3 pos = sRend.transform.position;
+            x = (int)pos.x;
+            y = (int)pos.y;
+            sRend.color = transform.parent.GetComponent<GridManger>().MakeColorArray(x,y);
         }
     }
 
