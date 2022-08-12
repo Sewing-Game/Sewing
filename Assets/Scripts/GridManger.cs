@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class GridManger : MonoBehaviour
 {
     public GameObject pixelObject;
+    public GameObject GridLineObject;
     public int gridSize = 40;
-    public List<GameObject> pixels;
     public Color currentColor = Color.black;
     public bool symmetric = false;
 
@@ -28,15 +28,20 @@ public class GridManger : MonoBehaviour
     }
     void SpawnGrid()
     {
-        pixels = new List<GameObject>();
         for (int i = 0; i < gridSize; i++)
         {
             for (int j = 0; j < gridSize; j++)
             {
                 //픽셀 생성 함수
                 //pixels.Add(Instantiate(pixelObject, new Vector3(j, -i, 0), Quaternion.identity, transform));
-                pixels.Add(Instantiate(pixelObject, new Vector3(j, i, 0), Quaternion.identity, transform));
+                Instantiate(pixelObject, new Vector3(j, i, 0), Quaternion.identity, transform);
             }
+        }
+        float initXPos = -0.5f;
+        for (int i = 0; i < (gridSize + 1); i++)
+        {
+            Instantiate(GridLineObject, new Vector3(initXPos + i, 19.5f, -1), Quaternion.identity, transform);
+            Instantiate(GridLineObject, new Vector3(19.5f, initXPos + i, -1), Quaternion.Euler(0,0,90), transform);
         }
     }
     // Paint Holder안 paint button들에게 적용할 onClick 함수
@@ -52,8 +57,7 @@ public class GridManger : MonoBehaviour
     
     public void ClearGrid()
     {
-        int numOfChild = this.transform.childCount;
-        for (int  i = 0;  i <numOfChild;  i++)
+        for (int  i = 0;  i <(gridSize * gridSize);  i++)
         {
             transform.GetChild(i).GetComponent<SpriteRenderer>().color = Color.white;
         }
@@ -65,9 +69,16 @@ public class GridManger : MonoBehaviour
         symmetric = (symmetric == false) ? true : false;
     }
 
-    public Color MakeColorArray(int x, int y)
+    public void MakeColorArray(int x, int y)
     {
+        if(symmetric)
+        {
+            int symmetricPosX = gridSize - 1 - x;
+            colorArray[symmetricPosX][y] = currentColor;
+            int childOrder = (y * gridSize) + symmetricPosX;
+            transform.GetChild(childOrder).GetComponent<SpriteRenderer>().color = currentColor;
+        }
         colorArray[x][y] = currentColor;
-        return colorArray[x][y];
+        transform.GetChild((y*gridSize)+x).GetComponent<SpriteRenderer>().color = currentColor;
     }
 }
