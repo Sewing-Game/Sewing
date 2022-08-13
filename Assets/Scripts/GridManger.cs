@@ -6,40 +6,39 @@ using UnityEngine.UI;
 
 public class GridManger : MonoBehaviour
 {
-    public GameObject pixelObject;
+    public PixelColor pixelObject;
     public GameObject GridLineObject;
+
     public int gridSize = 40;
     public Color currentColor = Color.black;
     public bool symmetric = false;
 
-    private Color[][] colorArray;
+    private PixelColor[][] colorArray;
+
     void Start()
     {
-        //줄 수 초기화
-        colorArray = new Color[gridSize][];
-        for (int i = 0; i <gridSize; i ++)
-        {
-            //칸 수 초기화
-            colorArray[i] = new Color[gridSize];
-            //Array.Fill은 1D array만 채울 수 있음.
-            Array.Fill(colorArray[i], Color.white);
-        }
         SpawnGrid();
     }
+
     void SpawnGrid()
     {
+
+        //create pixel sprite renderer
+        colorArray = new PixelColor[gridSize][];
         for (int i = 0; i < gridSize; i++)
         {
+            colorArray[i] = new PixelColor[gridSize];
             for (int j = 0; j < gridSize; j++)
             {
-                //픽셀 생성 함수
-                //pixels.Add(Instantiate(pixelObject, new Vector3(j, -i, 0), Quaternion.identity, transform));
-                Instantiate(pixelObject, new Vector3(j, i, 0), Quaternion.identity, transform);
+                //픽셀 인스턴스를 만들며 colorArray[i][j]번째에 오브젝트를 할당함.
+                colorArray[i][j]=Instantiate(pixelObject, new Vector3(j, i, 0), Quaternion.identity, transform);
             }
         }
+        //create pixel grid renderer
         float initXPos = -0.5f;
         for (int i = 0; i < (gridSize + 1); i++)
-        {
+        {   
+            //가로 세로 그리드 라인 생성
             Instantiate(GridLineObject, new Vector3(initXPos + i, 19.5f, -1), Quaternion.identity, transform);
             Instantiate(GridLineObject, new Vector3(19.5f, initXPos + i, -1), Quaternion.Euler(0,0,90), transform);
         }
@@ -50,23 +49,24 @@ public class GridManger : MonoBehaviour
         currentColor = thisColor.color;
     }
 
-    public Color GetCurrentColor()
-    {
-        return currentColor;
-    }
     
     public void ClearGrid()
     {
-        for (int  i = 0;  i <(gridSize * gridSize);  i++)
+        foreach (var pixels in colorArray)
         {
-            transform.GetChild(i).GetComponent<SpriteRenderer>().color = Color.white;
+           foreach (var pixel in pixels)
+           {
+                pixel.Color = Color.white;
+           }
         }
-    }
 
-    public void IsSymmetric()
+
+    }
+   
+    public void ToggleSymmetric()
     {
         //symmetric 여부 전환 버튼
-        symmetric = (symmetric == false) ? true : false;
+        symmetric = !symmetric ;
     }
 
     public void MakeColorArray(int x, int y)
@@ -74,11 +74,15 @@ public class GridManger : MonoBehaviour
         if(symmetric)
         {
             int symmetricPosX = gridSize - 1 - x;
-            colorArray[symmetricPosX][y] = currentColor;
-            int childOrder = (y * gridSize) + symmetricPosX;
-            transform.GetChild(childOrder).GetComponent<SpriteRenderer>().color = currentColor;
+            colorArray[symmetricPosX][y].Color = currentColor;
         }
-        colorArray[x][y] = currentColor;
-        transform.GetChild((y*gridSize)+x).GetComponent<SpriteRenderer>().color = currentColor;
+        colorArray[x][y].Color = currentColor;
     }
 }
+
+///
+/// GridManager : 화면에 그리드 생성. 팔레트로부터 변경할 컬러를 받아옴(= currentColor)
+///  - SpawnGrid()는 호출이 되면 pixelObject의 인스턴스를 생성함과 동시에 colorArray[][]에 오브젝트를 할당하여 연결시킴.
+///  - HandleColorClick method를 팔레트 버튼마다 onClick event handler로 설정.
+///  - 추가예정 : 페인트 툴
+///
