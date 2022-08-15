@@ -21,7 +21,6 @@ public class PixelManage : MonoBehaviour
             Vector3 pos = sRend.transform.position;
             x = (int)pos.x;
             y = (int)pos.y;
-            transform.parent.GetComponent<GridManger>().MakeColorArray(x,y);
         }
     }
 

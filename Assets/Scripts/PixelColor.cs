@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
-
+using UnityEngine.Events;
 public class PixelColor : MonoBehaviour
 {
     public Color defaultColor = Color.white;
+    public UnityEvent<PixelColor> OnClick = new UnityEvent<PixelColor>();
 
     private Color _color;
     private SpriteRenderer _renderer;
+
+    int x;
+    int y;
 
     /// <summary>
     /// 해당 프러퍼티는 pixel의 color를 변경합니다.
@@ -27,7 +31,17 @@ public class PixelColor : MonoBehaviour
         //컬러초기화 -> 다른곳에서할거임
         //스프라이트 렌더러가 뭔지도 받아와야함
         _renderer = this.GetComponent<SpriteRenderer>();
+        
         Color = defaultColor;
+    }
+
+    private void OnMouseOver()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            //Invoke = propagation event
+            OnClick.Invoke(this);
+        }
     }
 }
 

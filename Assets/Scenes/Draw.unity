@@ -1091,7 +1091,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1869164552}
         m_TargetAssemblyTypeName: GridManger, Assembly-CSharp
-        m_MethodName: IsSymmetric
+        m_MethodName: ToggleSymmetric
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2017,8 +2017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e740338fe3473e5458e0b85950405e8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pixelObject: {fileID: 302859915561649822, guid: 63732ff43f3793746835e88e7b2150b0, type: 3}
-  GridLineObject: {fileID: 7641925456653696895, guid: b4ce87a52e25e474cba2c699067e444b, type: 3}
+  pixelObject: {fileID: 3439498856192811779, guid: 19181714aebdee446a81af68516e51f6, type: 3}
   gridSize: 40
   currentColor: {r: 0, g: 0, b: 0, a: 1}
   symmetric: 0

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class GridManger : MonoBehaviour
 {
     public PixelColor pixelObject;
-    public GameObject GridLineObject;
+    //public GameObject GridLineObject;
 
     public int gridSize = 40;
     public Color currentColor = Color.black;
@@ -31,17 +31,28 @@ public class GridManger : MonoBehaviour
             for (int j = 0; j < gridSize; j++)
             {
                 //픽셀 인스턴스를 만들며 colorArray[i][j]번째에 오브젝트를 할당함.
-                colorArray[i][j]=Instantiate(pixelObject, new Vector3(j, i, 0), Quaternion.identity, transform);
+                var x = i;
+                var y = j;
+                colorArray[i][j]=Instantiate(pixelObject, new Vector3(i, j, 0), Quaternion.identity, transform);
+                colorArray[i][j].OnClick.AddListener((item) =>
+                {
+                    if (symmetric)
+                    {
+                        int symmetricPosX = gridSize - 1 - x;
+                        colorArray[symmetricPosX][y].Color = currentColor;
+                    }
+                    colorArray[x][y].Color = currentColor;
+                });
             }
         }
         //create pixel grid renderer
-        float initXPos = -0.5f;
-        for (int i = 0; i < (gridSize + 1); i++)
-        {   
-            //가로 세로 그리드 라인 생성
-            Instantiate(GridLineObject, new Vector3(initXPos + i, 19.5f, -1), Quaternion.identity, transform);
-            Instantiate(GridLineObject, new Vector3(19.5f, initXPos + i, -1), Quaternion.Euler(0,0,90), transform);
-        }
+        //float initXPos = -0.5f;
+        //for (int i = 0; i < (gridSize + 1); i++)
+        //{   
+        //    //가로 세로 그리드 라인 생성
+        //    Instantiate(GridLineObject, new Vector3(initXPos + i, 19.5f, -1), Quaternion.identity, transform);
+        //    Instantiate(GridLineObject, new Vector3(19.5f, initXPos + i, -1), Quaternion.Euler(0,0,90), transform);
+        //}
     }
     // Paint Holder안 paint button들에게 적용할 onClick 함수
     public void HandleColorClick(Image thisColor)
@@ -67,17 +78,9 @@ public class GridManger : MonoBehaviour
     {
         //symmetric 여부 전환 버튼
         symmetric = !symmetric ;
+        Debug.Log("toggle");
     }
 
-    public void MakeColorArray(int x, int y)
-    {
-        if(symmetric)
-        {
-            int symmetricPosX = gridSize - 1 - x;
-            colorArray[symmetricPosX][y].Color = currentColor;
-        }
-        colorArray[x][y].Color = currentColor;
-    }
 }
 
 ///
