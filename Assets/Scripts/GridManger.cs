@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using System.IO;
 
 public class GridManger : MonoBehaviour
 {
@@ -122,6 +123,23 @@ public class GridManger : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void SaveColorArrayAsImage()
+    {
+        Texture2D texture = new Texture2D(gridSize, gridSize);
+        for (int i = 0; i < gridSize; i++)
+        {
+            for (int j = 0; j < gridSize; j++)
+            {
+                texture.SetPixel(i, j, colorArray[i][j].Color);
+            }
+        }
+        System.Random r = new System.Random();
+        byte[] bytes = texture.EncodeToPNG();
+        var dirPath = Application.dataPath + "";
+        int rand = r.Next();
+        File.WriteAllBytes(dirPath + "/" + rand + ".png", bytes);
     }
 }
 
