@@ -8,9 +8,6 @@ public class PixelColor : MonoBehaviour
     private Color _color;
     private SpriteRenderer _renderer;
 
-    int x;
-    int y;
-
     /// <summary>
     /// 해당 프러퍼티는 pixel의 color를 변경합니다.
     /// </summary>
@@ -43,6 +40,7 @@ public class PixelColor : MonoBehaviour
             OnClick.Invoke(this);
         }
     }
+
 }
 
 ///

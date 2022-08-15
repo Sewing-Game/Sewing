@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class GridManger : MonoBehaviour
 {
@@ -12,8 +13,12 @@ public class GridManger : MonoBehaviour
     public int gridSize = 40;
     public Color currentColor = Color.black;
     public bool symmetric = false;
-
+    public bool paintTool = false;
+    
+    
     private PixelColor[][] colorArray;
+    private static readonly int[,] paintVisitPath = new int[,] { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
+    private bool[,] visit;
 
     void Start()
     {
@@ -41,6 +46,11 @@ public class GridManger : MonoBehaviour
                         int symmetricPosX = gridSize - 1 - x;
                         colorArray[symmetricPosX][y].Color = currentColor;
                     }
+                    if (paintTool)
+                    {
+                        Color nowColor = colorArray[x][y].Color;
+                        BFS(x, y, nowColor);
+                    }
                     colorArray[x][y].Color = currentColor;
                 });
             }
@@ -60,7 +70,7 @@ public class GridManger : MonoBehaviour
         currentColor = thisColor.color;
     }
 
-    
+
     public void ClearGrid()
     {
         foreach (var pixels in colorArray)
@@ -70,17 +80,49 @@ public class GridManger : MonoBehaviour
                 pixel.Color = Color.white;
            }
         }
-
-
     }
    
     public void ToggleSymmetric()
     {
         //symmetric 여부 전환 버튼
         symmetric = !symmetric ;
-        Debug.Log("toggle");
     }
 
+    public void HandlePaintToolClick()
+    {
+        paintTool = !paintTool;
+        Debug.Log(paintTool);
+    }
+    
+
+    public void BFS(int x, int y, Color targetColor)
+    {
+        visit = new bool[gridSize, gridSize];
+        var queue = new Queue<(int,int)>();
+
+        visit[x, y] = true;
+        queue.Enqueue((x, y));
+
+        while (queue.Any() == true)
+        {
+            (int a,int b) = queue.Dequeue();
+            for (int i = 0; i < 4; i++)
+            {
+                int dx = a + paintVisitPath[i, 0];
+                int dy = b + paintVisitPath[i, 1];
+                if ((dx >= gridSize || dy >= gridSize || dx < 0 || dy < 0) || visit[dx,dy]==true)
+                {
+                    continue;
+                }
+                if (visit[dx,dy] == false && colorArray[dx][dy].Color == targetColor)
+                {
+                    queue.Enqueue((dx, dy));
+                    visit[dx, dy] = true;
+                    colorArray[dx][dy].Color = currentColor;
+                }
+            }
+        }
+    }
 }
 
 ///
