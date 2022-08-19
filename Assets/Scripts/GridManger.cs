@@ -15,6 +15,7 @@ public class GridManger : MonoBehaviour
     public Color currentColor = Color.black;
     public bool symmetric = false;
     public bool paintTool = false;
+    private Color[][] c;
     
     
     private PixelColor[][] colorArray;
@@ -36,7 +37,7 @@ public class GridManger : MonoBehaviour
             colorArray[i] = new PixelColor[gridSize];
             for (int j = 0; j < gridSize; j++)
             {
-                //ÇÈ¼¿ ÀÎ½ºÅÏ½º¸¦ ¸¸µé¸ç colorArray[i][j]¹øÂ°¿¡ ¿ÀºêÁ§Æ®¸¦ ÇÒ´çÇÔ.
+                //ï¿½È¼ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ colorArray[i][j]ï¿½ï¿½Â°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ò´ï¿½ï¿½ï¿½.
                 var x = i;
                 var y = j;
                 colorArray[i][j]=Instantiate(pixelObject, new Vector3(i, j, 0), Quaternion.identity, transform);
@@ -60,12 +61,12 @@ public class GridManger : MonoBehaviour
         //float initXPos = -0.5f;
         //for (int i = 0; i < (gridSize + 1); i++)
         //{   
-        //    //°¡·Î ¼¼·Î ±×¸®µå ¶óÀÎ »ý¼º
+        //    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         //    Instantiate(GridLineObject, new Vector3(initXPos + i, 19.5f, -1), Quaternion.identity, transform);
         //    Instantiate(GridLineObject, new Vector3(19.5f, initXPos + i, -1), Quaternion.Euler(0,0,90), transform);
         //}
     }
-    // Paint Holder¾È paint buttonµé¿¡°Ô Àû¿ëÇÒ onClick ÇÔ¼ö
+    // Paint Holderï¿½ï¿½ paint buttonï¿½é¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ onClick ï¿½Ô¼ï¿½
     public void HandleColorClick(Image thisColor)
     {
         currentColor = thisColor.color;
@@ -85,7 +86,7 @@ public class GridManger : MonoBehaviour
    
     public void ToggleSymmetric()
     {
-        //symmetric ¿©ºÎ ÀüÈ¯ ¹öÆ°
+        //symmetric ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ ï¿½ï¿½Æ°
         symmetric = !symmetric ;
     }
 
@@ -141,11 +142,25 @@ public class GridManger : MonoBehaviour
         int rand = r.Next();
         File.WriteAllBytes(dirPath + "/" + rand + ".png", bytes);
     }
+
+    public Color getColor(int x,int y){
+        c = new Color[gridSize][];
+        for (int i = 0; i < gridSize; i++)
+        {
+            c[i] = new Color[gridSize];
+            for (int j = 0; j < gridSize; j++)
+            {
+                c[i][j] = colorArray[i][j].Color;
+            }
+        }
+        return c[x][y];
+    }
+
 }
 
 ///
-/// GridManager : È­¸é¿¡ ±×¸®µå »ý¼º. ÆÈ·¹Æ®·ÎºÎÅÍ º¯°æÇÒ ÄÃ·¯¸¦ ¹Þ¾Æ¿È(= currentColor)
-///  - SpawnGrid()´Â È£ÃâÀÌ µÇ¸é pixelObjectÀÇ ÀÎ½ºÅÏ½º¸¦ »ý¼ºÇÔ°ú µ¿½Ã¿¡ colorArray[][]¿¡ ¿ÀºêÁ§Æ®¸¦ ÇÒ´çÇÏ¿© ¿¬°á½ÃÅ´.
-///  - HandleColorClick method¸¦ ÆÈ·¹Æ® ¹öÆ°¸¶´Ù onClick event handler·Î ¼³Á¤.
-///  - Ãß°¡¿¹Á¤ : ÆäÀÎÆ® Åø
+/// GridManager : È­ï¿½é¿¡ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. ï¿½È·ï¿½Æ®ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½(= currentColor)
+///  - SpawnGrid()ï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¸ï¿½ pixelObjectï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô°ï¿½ ï¿½ï¿½ï¿½Ã¿ï¿½ colorArray[][]ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ò´ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å´.
+///  - HandleColorClick methodï¿½ï¿½ ï¿½È·ï¿½Æ® ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ï¿½ onClick event handlerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+///  - ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½
 ///
