@@ -445,7 +445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7de441f64477d4c43ac2ad12e2861cdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scriptPath: Assets/Resources/Dialogues/ko/0. Test Dialogue.txt
+  scriptPath: Dialogues/ko/0. Test Dialogue
 --- !u!4 &1156818898
 Transform:
   m_ObjectHideFlags: 0

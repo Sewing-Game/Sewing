@@ -9,7 +9,7 @@ public class DialogueScript : IEnumerable<DialogueScriptSnippet>
 {
     public static DialogueScript FromFile(string path)
     {
-        var textFile = Resources.Load<TextAsset>("Dialogues/ko/0. Test Dialogue");
+        var textFile = Resources.Load<TextAsset>(path);
         
         return new DialogueScript
         {
@@ -26,13 +26,11 @@ public class DialogueScript : IEnumerable<DialogueScriptSnippet>
 
     public IEnumerator<DialogueScriptSnippet> GetEnumerator()
     {
-        Debug.Log(_snippets.Count());
         return _snippets.GetEnumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator()
     {
-        Debug.Log("IEnumerator");
         return GetEnumerator();
     }
 }
