@@ -14,7 +14,7 @@ public class GridManger : MonoBehaviour
     public int gridSize = 40;
     public Color currentColor = Color.black;
     public bool symmetric = false;
-    public bool paintTool = false;
+    public bool selectedPaintTool = false;
     
     
     private PixelColor[][] colorArray;
@@ -36,7 +36,7 @@ public class GridManger : MonoBehaviour
             colorArray[i] = new PixelColor[gridSize];
             for (int j = 0; j < gridSize; j++)
             {
-                //픽셀 인스턴스를 만들며 colorArray[i][j]번째에 오브젝트를 할당함.
+                //Creates a pixel instance and assigns an object to the colorArray[i][j]th.
                 var x = i;
                 var y = j;
                 colorArray[i][j]=Instantiate(pixelObject, new Vector3(i, j, 0), Quaternion.identity, transform);
@@ -47,7 +47,7 @@ public class GridManger : MonoBehaviour
                         int symmetricPosX = gridSize - 1 - x;
                         colorArray[symmetricPosX][y].Color = currentColor;
                     }
-                    if (paintTool)
+                    if (selectedPaintTool)
                     {
                         Color nowColor = colorArray[x][y].Color;
                         BFS(x, y, nowColor);
@@ -60,12 +60,12 @@ public class GridManger : MonoBehaviour
         //float initXPos = -0.5f;
         //for (int i = 0; i < (gridSize + 1); i++)
         //{   
-        //    //가로 세로 그리드 라인 생성
+        //    Create Horizontal, Vertical Grid Lines
         //    Instantiate(GridLineObject, new Vector3(initXPos + i, 19.5f, -1), Quaternion.identity, transform);
         //    Instantiate(GridLineObject, new Vector3(19.5f, initXPos + i, -1), Quaternion.Euler(0,0,90), transform);
         //}
     }
-    // Paint Holder안 paint button들에게 적용할 onClick 함수
+    // OnClick function to apply to paint buttons in Paint Holder
     public void HandleColorClick(Image thisColor)
     {
         currentColor = thisColor.color;
@@ -85,14 +85,18 @@ public class GridManger : MonoBehaviour
    
     public void ToggleSymmetric()
     {
-        //symmetric 여부 전환 버튼
+        //switch whether symmetric is present button
         symmetric = !symmetric ;
     }
 
     public void HandlePaintToolClick()
     {
-        paintTool = !paintTool;
-        Debug.Log(paintTool);
+        selectedPaintTool = !selectedPaintTool;
+        if (selectedPaintTool) 
+        {
+            symmetric = false;
+        } 
+        Debug.Log(selectedPaintTool);
     }
     
 
@@ -125,6 +129,7 @@ public class GridManger : MonoBehaviour
         }
     }
 
+    //<temp> create cloth object and material code
     public void SaveColorArrayAsImage()
     {
         Texture2D texture = new Texture2D(gridSize, gridSize);
@@ -138,14 +143,18 @@ public class GridManger : MonoBehaviour
         System.Random r = new System.Random();
         byte[] bytes = texture.EncodeToPNG();
         var dirPath = Application.dataPath + "";
+        texture.Apply();
+
+        GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        cube.transform.position = new Vector3(30, 30, 0);
+        cube.GetComponent<Renderer>().material.mainTexture = texture;
         int rand = r.Next();
         File.WriteAllBytes(dirPath + "/" + rand + ".png", bytes);
     }
 }
 
 ///
-/// GridManager : 화면에 그리드 생성. 팔레트로부터 변경할 컬러를 받아옴(= currentColor)
-///  - SpawnGrid()는 호출이 되면 pixelObject의 인스턴스를 생성함과 동시에 colorArray[][]에 오브젝트를 할당하여 연결시킴.
-///  - HandleColorClick method를 팔레트 버튼마다 onClick event handler로 설정.
-///  - 추가예정 : 페인트 툴
+/// GridManager : Create grid on screen; get color to change from palette (= currentColor)
+///  - When SpawnGrid() is called, Create an instance of pixelObject and assign the object to colorArray[][] at the same time.
+///  - et the HandleColorClick method to onClick event handler for each palette button
 ///
