@@ -14,17 +14,22 @@ public class DialogueScriptManager : MonoBehaviour
         _dialogueWindow = GetComponentInChildren<DialogueWindow>();
     }
 
-    // Start is called before the first frame update
     void Start()
-    {        
+    {
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Next();
+            if (_dialogueWindow.TextDisplayed)
+            {
+                Next();
+            }
+            else
+            {
+                _dialogueWindow.Skip();
+            }
         }
     }
 
@@ -33,21 +38,20 @@ public class DialogueScriptManager : MonoBehaviour
         _currentScript = DialogueScript.FromFile(path);
         _enumerator = _currentScript.GetEnumerator();
         _enumerator.Reset();
-        _dialogueWindow.Show();
+        _dialogueWindow.WindowShow();
         Next();
     }
 
     public bool Next()
     {
         var result = _enumerator.MoveNext();
-        Debug.Log(result);
         if (result)
         {
             _dialogueWindow.Text = _enumerator.Current.Text;
         }
         else
         {
-            _dialogueWindow.Hide();
+            _dialogueWindow.WindowHide();
         }
 
         return result;
