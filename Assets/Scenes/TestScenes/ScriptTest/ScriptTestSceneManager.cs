@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ScriptTestSceneManager : MonoBehaviour
 {
-    public string scriptPath = "Assets/Resources/Dialogues/ko/0. Test Dialogue.txt";
-    private DialogueScriptManager _dialogueScriptManager;
+    public string scriptPath = "Assets/Resources/Dialogues/ko/0. Test Dialogue.json";
+    private DialogueManager _dialogueScriptManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        _dialogueScriptManager = FindObjectOfType<DialogueScriptManager>();
+        _dialogueScriptManager = FindObjectOfType<DialogueManager>();
         _dialogueScriptManager.Load(scriptPath);
     }
 

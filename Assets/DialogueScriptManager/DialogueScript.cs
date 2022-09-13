@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,16 +8,14 @@ using UnityEngine;
 
 public class DialogueScript : IEnumerable<DialogueScriptSnippet>
 {
+    private static JsonSerializer _jsonSerializer = JsonSerializer.CreateDefault();
     public static DialogueScript FromFile(string path)
-    {
+    {        
         var textFile = Resources.Load<TextAsset>(path);
-        
+        using var reader = new JsonTextReader(new StringReader(textFile.text));
         return new DialogueScript
         {
-            _snippets = textFile.text.Trim().Split("\r\n", StringSplitOptions.RemoveEmptyEntries).Select(item => new DialogueScriptSnippet
-            {
-                Text = item
-            }).ToList()
+            _snippets = _jsonSerializer.Deserialize<DialogueScriptSnippet[]>(reader)
         };
     }
 

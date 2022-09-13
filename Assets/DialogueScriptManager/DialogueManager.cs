@@ -3,32 +3,33 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class DialogueScriptManager : MonoBehaviour
+public class DialogueManager : MonoBehaviour
 {
     private DialogueScript _currentScript;
     private IEnumerator<DialogueScriptSnippet> _enumerator;
-    private DialogueWindow _dialogueWindow;
+    private DialogueUI _dialogueUi;
 
     public void Awake()
     {
-        _dialogueWindow = GetComponentInChildren<DialogueWindow>();
+        _dialogueUi = GetComponentInChildren<DialogueUI>();
     }
 
-    void Start()
+    public void Start()
     {
+        _dialogueUi.WindowHide();
     }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (_dialogueWindow.TextDisplayed)
+            if (_dialogueUi.TextDisplayed)
             {
                 Next();
             }
             else
             {
-                _dialogueWindow.Skip();
+                _dialogueUi.Skip();
             }
         }
     }
@@ -38,7 +39,6 @@ public class DialogueScriptManager : MonoBehaviour
         _currentScript = DialogueScript.FromFile(path);
         _enumerator = _currentScript.GetEnumerator();
         _enumerator.Reset();
-        _dialogueWindow.WindowShow();
         Next();
     }
 
@@ -47,11 +47,12 @@ public class DialogueScriptManager : MonoBehaviour
         var result = _enumerator.MoveNext();
         if (result)
         {
-            _dialogueWindow.Text = _enumerator.Current.Text;
+            _dialogueUi.LabelText = _enumerator.Current.Label;
+            _dialogueUi.DialogueText = _enumerator.Current.Text;
         }
         else
         {
-            _dialogueWindow.WindowHide();
+            _dialogueUi.WindowHide();
         }
 
         return result;
