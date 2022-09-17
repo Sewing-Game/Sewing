@@ -9,8 +9,11 @@ public class ControlSky : MonoBehaviour
     private Light dayLight;
     [SerializeField]
     private Material dayMat;
+<<<<<<< HEAD
     [SerializeField]
     private Material nightMat;
+=======
+>>>>>>> bcaa3b562e2a102383be36c2f9fd26b345ccd1c1
     private TimeManager tm;
     [SerializeField]
     private Text TimeTxt;
@@ -28,6 +31,7 @@ public class ControlSky : MonoBehaviour
 
     private void OnGUI()
     {
+<<<<<<< HEAD
         x = 360-((tm.Hour*3600 + tm.Min*60 +tm.Sec)/240); 
         float y=dayLight.transform.rotation.y;
         float z=dayLight.transform.rotation.z;
@@ -38,6 +42,12 @@ public class ControlSky : MonoBehaviour
         else{
             RenderSettings.skybox = nightMat;
         }
+=======
+        x = (360-(tm.Hour*3600 + tm.Min*60 +tm.Sec)/240); 
+        float y=dayLight.transform.rotation.y;
+        float z=dayLight.transform.rotation.z;
+        dayLight.transform.rotation = Quaternion.Euler(x,y,z);
+        RenderSettings.skybox = dayMat;
+>>>>>>> bcaa3b562e2a102383be36c2f9fd26b345ccd1c1
     }
 }
-

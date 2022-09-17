@@ -16,7 +16,14 @@ public class TimeManager : MonoBehaviour
     public int initmonth=4;
     public int initday=1;
     public float speed = 96f;
+<<<<<<< HEAD
 
+=======
+    private int tmp=0;
+    private int year=0;
+    private int month=0;
+    private int day=0;
+>>>>>>> bcaa3b562e2a102383be36c2f9fd26b345ccd1c1
     private float _totalTime;
     private NemoDate date;
     public int Year => date.year;
@@ -34,13 +41,19 @@ public class TimeManager : MonoBehaviour
 
     void Update()
     {
-        _totalTime += Time.deltaTime * Time.timeScale *speed;
+        _totalTime += Time.deltaTime * Time.timeScale;
         float t = _totalTime;
-        date.year = (int)(t / yearSecond);
+        tmp = year;
+        year = (int)(t / yearSecond);
+        if (tmp!=year) date.year+=1;
         t %= yearSecond;
-        date.month = (int)(t / monthSecond);
+        tmp = month;
+        month = (int)(t / monthSecond);
+        if (tmp!=month) date.month+=1;
         t %= monthSecond;
-        date.day = (int)(t / daySecond);
+        tmp = day;
+        day = (int)(t / daySecond);
+        if (tmp!=day) date.day+=1;
         t %= daySecond;
         date.hour = (int)(t / 3600);
         t %= 3600;

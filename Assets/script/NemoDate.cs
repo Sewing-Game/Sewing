@@ -16,4 +16,8 @@ public class NemoDate
         month = initmonth;
         day = initday;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> bcaa3b562e2a102383be36c2f9fd26b345ccd1c1
