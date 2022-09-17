@@ -6,16 +6,17 @@ using UnityEngine.UI;
 using System.Linq;
 using System.IO;
 
-public class baseGridManger : MonoBehaviour
+public class GetSimilarity : MonoBehaviour
 {
-    //public PixelColor pixelObject;
+    //User drawing Object
     public GameObject board;
 
+    //drawing and Lable size
     public int gridSize = 40;
     
     private Color[][] colorArray;
     public string filePath;
-    //texture 씌울 오브젝트
+    //Object to be textured (Label)
     public GameObject square;
 
     private GridManger drawing;
@@ -24,20 +25,20 @@ public class baseGridManger : MonoBehaviour
 
     void Start()
     {
-        setLabelImage(filePath);
+        SetLableImage(filePath);
         drawing = board.GetComponent<GridManger>();
     }
 
     void Update(){
-        loss = similarity();
+        loss = Similarity();
     }
 
-    float abs(float x){
+    float Abs(float x){
         if(x<0) x*=-1;
         return x;
     }
 
-    float similarity(){
+    float Similarity(){
         for (int i = 0; i < gridSize; i++){
             for (int j = 0; j < gridSize; j++){
                 Color l = colorArray[i][j];
@@ -49,9 +50,9 @@ public class baseGridManger : MonoBehaviour
         return Mathf.Sqrt(Mathf.Pow(score,2));
     }
 
-    Texture2D resizing(Texture2D source,int gridSize){
+    //Resize to 40X40
+    Texture2D Resizing(Texture2D source,int gridSize){
 
-        //Resize to 40X40
         Texture2D result = new Texture2D(gridSize, gridSize, source.format, true);
         Color[] rpixels = result.GetPixels(0);
         float incX = (1.0f / (float)gridSize);
@@ -63,20 +64,19 @@ public class baseGridManger : MonoBehaviour
         }
         result.SetPixels(rpixels, 0);
         result.Apply();
-        //print("Size is " + result.width + " by " + result.height);
         return result;
     }
 
-    void setLabelImage(string filePath)
+    //Set Label Texture and Save as a Color array for comparison
+    void SetLableImage(string filePath)
     {
         Texture2D tex = new Texture2D(gridSize, gridSize);
         byte[] bytes = File.ReadAllBytes(filePath);
         tex.LoadImage(bytes);
 
-        Texture2D result = resizing(tex,gridSize);
-
-        //Color[] label = tex.GetPixels(0,0,gridSize,gridSize);
+        Texture2D result = Resizing(tex,gridSize);
         square.GetComponent<Renderer>().material.mainTexture = tex;
+
         //create pixel sprite renderer
         colorArray = new Color[gridSize][];
         for (int i = 0; i < gridSize; i++)
@@ -86,16 +86,14 @@ public class baseGridManger : MonoBehaviour
             {
                 var x = i;
                 var y = j;
-                // Debug.Log(i+""+j);
                 Color c = result.GetPixel(i,j);
-                // Debug.Log(c);
-                // Debug.Log(Color.black);
                 colorArray[i][j] = c;
             }
         }
     }
 
-    public Color getColor(int x,int y){
+    //Get Color of Label
+    public Color GetColor(int x,int y){
         return colorArray[x][y];
     }
 }

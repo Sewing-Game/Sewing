@@ -9,7 +9,6 @@ using System.IO;
 public class GridManger : MonoBehaviour
 {
     public PixelColor pixelObject;
-    //public GameObject GridLineObject;
 
     public int gridSize = 40;
     public Color currentColor = Color.black;
@@ -57,14 +56,6 @@ public class GridManger : MonoBehaviour
                 });
             }
         }
-        //create pixel grid renderer
-        //float initXPos = -0.5f;
-        //for (int i = 0; i < (gridSize + 1); i++)
-        //{   
-        //    //���� ���� �׸��� ���� ����
-        //    Instantiate(GridLineObject, new Vector3(initXPos + i, 19.5f, -1), Quaternion.identity, transform);
-        //    Instantiate(GridLineObject, new Vector3(19.5f, initXPos + i, -1), Quaternion.Euler(0,0,90), transform);
-        //}
     }
     // Paint Holder�� paint button�鿡�� ������ onClick �Լ�
     public void HandleColorClick(Image thisColor)
@@ -143,7 +134,7 @@ public class GridManger : MonoBehaviour
         File.WriteAllBytes(dirPath + "/" + rand + ".png", bytes);
     }
 
-    public Color getColor(int x,int y){
+    public Color GetColor(int x,int y){
         c = new Color[gridSize][];
         for (int i = 0; i < gridSize; i++)
         {
@@ -157,10 +148,3 @@ public class GridManger : MonoBehaviour
     }
 
 }
-
-///
-/// GridManager : ȭ�鿡 �׸��� ����. �ȷ�Ʈ�κ��� ������ �÷��� �޾ƿ�(= currentColor)
-///  - SpawnGrid()�� ȣ���� �Ǹ� pixelObject�� �ν��Ͻ��� �����԰� ���ÿ� colorArray[][]�� ������Ʈ�� �Ҵ��Ͽ� �����Ŵ.
-///  - HandleColorClick method�� �ȷ�Ʈ ��ư���� onClick event handler�� ����.
-///  - �߰����� : ����Ʈ ��
-///
