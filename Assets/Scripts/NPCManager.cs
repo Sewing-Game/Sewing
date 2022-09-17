@@ -4,7 +4,7 @@ using UnityEngine;
 public class NPCManager : MonoBehaviour
 {
     [SerializeField] private float m_moveSpeed = 0.1f;
-    [SerializeField] private Transform destination = null;
+    public Transform destination = null;
 
     private List<Collider> m_collisions = new List<Collider>();
 
@@ -74,7 +74,6 @@ public class NPCManager : MonoBehaviour
 
         if (des != Vector3.zero)
         {
-            //transform.LookAt(des);
             des = new Vector3(des.x,transform.position.y,des.z);
             transform.position = Vector3.MoveTowards(transform.position, des, m_moveSpeed * Time.deltaTime);
         }
