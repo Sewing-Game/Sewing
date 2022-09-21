@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
+    //Assign thie field in Inspector window
     [SerializeField] private Categories category;
     [SerializeField] private string itemName;
     [SerializeField] private Sprite itemImage;
-    private int cnt = 0;
+    [SerializeField] private int cnt=1;
 
     public string getItemName(){
         return itemName;
@@ -22,11 +23,11 @@ public class Item : MonoBehaviour
         return itemImage;
     } 
 
-    public int getCnt(){
+    public int getCNT(){
         return cnt;
     }
 
-    public void PlusCNT(){
+    public void AddCount(){
         cnt+=1;
     }
 

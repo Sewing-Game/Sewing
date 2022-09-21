@@ -1,5 +1,5 @@
 [System.Serializable]
 public enum Categories
 {
-    Fabric,Item,Design
+    None,Fabric,Item,Design,Denim
 }
