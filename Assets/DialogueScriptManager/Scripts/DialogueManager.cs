@@ -43,12 +43,13 @@ public class DialogueManager : MonoBehaviour
     }
 
     public bool Next()
-    {
+    { 
         var result = _enumerator.MoveNext();
         if (result)
         {
             _dialogueUi.LabelText = _enumerator.Current.Label;
-            _dialogueUi.DialogueText = _enumerator.Current.Text;
+            _dialogueUi.DialogueText = _enumerator.Current.Text;            
+            _dialogueUi.Options = _enumerator.Current.Options;
         }
         else
         {
