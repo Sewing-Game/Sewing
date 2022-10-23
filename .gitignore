@@ -70,3 +70,10 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+/[Aa]ssets/RPGTinyHeroWavePBR/
+/Assets/BrokenVector
+/Assets/Fantasy_Kingdom_Pack
+/Assets/low-poly-fountain
+/Assets/pbr_textures
+/Assets/_TerrainAutoUpgrade
