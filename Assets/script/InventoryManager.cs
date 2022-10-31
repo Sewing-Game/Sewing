@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
-    private static bool invectoryActivated = true;  // Whether enabled inventory
+    private static bool invectoryActivated = false;  // Whether enabled inventory
 
     public GameObject go_InventoryBase; // the background of Slots 
     public GameObject go_SlotsParent;  //the Parent Object of Slots
@@ -22,6 +22,7 @@ public class InventoryManager : MonoBehaviour
     void Start()
     {  
         slots = go_SlotsParent.GetComponentsInChildren<InventorySlot>();
+        CloseInventory();
     }
     
     public void Remove(){
