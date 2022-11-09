@@ -1,0 +1,9 @@
+[submodule "Assets/Fantasy_Kingdom_Pack"]
+	path = Assets/Fantasy_Kingdom_Pack
+	url = https://github.com/Sewing-Game/Fantasy_Kingdom_Pack
+[submodule "Assets/BrokenVector"]
+	path = Assets/BrokenVector
+	url = https://github.com/Sewing-Game/BrokenVector
+[submodule "Assets/RPGTinyHeroWavePBR"]
+	path = Assets/RPGTinyHeroWavePBR
+	url = https://github.com/Sewing-Game/RPGTinyHeroWavePBR
