@@ -20,7 +20,6 @@ public class GridManger : MonoBehaviour
     private PixelColor[][] colorArray;
     private static readonly int[,] paintVisitPath = new int[,] { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
     private bool[,] visit;
-    private float gap = 0.7f;
 
     void Start()
     {
@@ -40,7 +39,7 @@ public class GridManger : MonoBehaviour
                 //Creates a pixel instance and assigns an object to the colorArray[i][j]th.
                 var x = i;
                 var y = j;
-                colorArray[i][j]=Instantiate(pixelObject, new Vector3(6.6f+gap*i, 4.5f+gap*j, 0), Quaternion.identity, this.transform);
+                colorArray[i][j]=Instantiate(pixelObject, new Vector3(i, j, 0), Quaternion.identity, transform);
                 colorArray[i][j].OnClick.AddListener((item) =>
                 {
                     if (symmetric)
@@ -146,9 +145,9 @@ public class GridManger : MonoBehaviour
         var dirPath = Application.dataPath + "";
         texture.Apply();
 
-        //GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        //cube.transform.position = new Vector3(30, 30, 0);
-        //cube.GetComponent<Renderer>().material.mainTexture = texture;
+        GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        cube.transform.position = new Vector3(30, 30, 0);
+        cube.GetComponent<Renderer>().material.mainTexture = texture;
         int rand = r.Next();
         File.WriteAllBytes(dirPath + "/" + rand + ".png", bytes);
     }
