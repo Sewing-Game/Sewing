@@ -612,7 +612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 437468, guid: 1a5a4b35451176546a8c73b12fa6af76, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.45452306
+      value: -0.28
       objectReference: {fileID: 0}
     - target: {fileID: 437468, guid: 1a5a4b35451176546a8c73b12fa6af76, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1494,6 +1494,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1942964563}
     m_Modifications:
+    - target: {fileID: 100620, guid: 7b5eb0c38bc09a64485ee9d7ac59b107, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 104942, guid: 7b5eb0c38bc09a64485ee9d7ac59b107, type: 3}
       propertyPath: m_Name
       value: BuildingAT15
@@ -5709,6 +5713,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: cd01a3986d149b44e92b9ce3d9585786, type: 3}
   m_PrefabInstance: {fileID: 901427046}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &912884958 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100620, guid: 7b5eb0c38bc09a64485ee9d7ac59b107, type: 3}
+  m_PrefabInstance: {fileID: 217048249}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &912884962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912884958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e61724c7cb739db42ab09183250029d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.1
 --- !u!1 &962672061
 GameObject:
   m_ObjectHideFlags: 0
