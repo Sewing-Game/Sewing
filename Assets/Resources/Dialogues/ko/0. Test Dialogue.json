@@ -1,0 +1,20 @@
+[
+    {
+        "Kind": "Nemo#DialogueScriptSnippet",
+        "Text": "와 비어있는 파일 읽어올라 했어요"
+    },
+    {
+        "Kind": "Nemo#DialogueScriptSnippet",
+        "Label": "나오",
+        "Text": "그러니 어떻게 하든 못 읽죠."       
+    },
+    {
+        "Kind": "Nemo#DialogueScriptSnippet",
+        "Text": "좀 많이 슬프네요"
+    },
+    {
+        "Kind": "Nemo#DialogueScriptSnippet",
+        "Label": "모리안",
+        "Text": "안촉촉한 초코칩 나라에 살던 안촉촉한 초코칩이 촉촉한 초코칩 나라의 촉촉한 초코칩을 보고 촉촉한 초코칩이 되고 싶어서 촉촉한 초코칩 나라에 갔는데 촉촉한 초코칩 나라의 촉촉한 초코칩 문지기가 \"넌 촉촉한 초코칩이 아니고 안촉촉한 초코칩이니까 안촉촉한 초코칩나라에서 살아\"라고해서 안촉촉한 초코칩은 촉촉한 초코칩이 되는것을 포기하고 안촉촉한 초코칩 나라로 돌아갔다."
+    }
+]
