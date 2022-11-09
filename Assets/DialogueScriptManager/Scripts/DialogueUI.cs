@@ -14,7 +14,6 @@ public class DialogueUI : MonoBehaviour
     private readonly object _cursorLock = new();
     public DialogueWindow _dialogueWindow = null;
     public LabelWindow _labelWindow = null;
-    public ButtonRegion _buttonRegion = null;
 
     public int DisplayedCursor
     {
@@ -55,29 +54,10 @@ public class DialogueUI : MonoBehaviour
         set => _labelWindow.Text = value;
     }
 
-    public IEnumerable<string> Options
-    {
-        set
-        {
-            _buttonRegion.Clear();
-            if (value is null)
-            {
-                _buttonRegion.Hide();
-            }
-            else
-            {
-                _buttonRegion.AddButtons(value);
-                _buttonRegion.Show();
-            }
-        }
-
-    }
-
     private void Awake()
     {
         _dialogueWindow = GetComponentInChildren<DialogueWindow>();
         _labelWindow = GetComponentInChildren<LabelWindow>();
-        _buttonRegion = GetComponentInChildren<ButtonRegion>();
     }
 
     // Update is called once per frame
@@ -97,14 +77,12 @@ public class DialogueUI : MonoBehaviour
     {
         _dialogueWindow.Show();
         _labelWindow.Show();
-        _buttonRegion.Show();
     }
 
     public void WindowHide()
     {
         _dialogueWindow.Hide();
         _labelWindow.Hide();
-        _buttonRegion.Hide();
     }
 
     public void Skip()

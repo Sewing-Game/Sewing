@@ -49,7 +49,6 @@ public class DialogueManager : MonoBehaviour
         {
             _dialogueUi.LabelText = _enumerator.Current.Label;
             _dialogueUi.DialogueText = _enumerator.Current.Text;            
-            _dialogueUi.Options = _enumerator.Current.Options;
         }
         else
         {

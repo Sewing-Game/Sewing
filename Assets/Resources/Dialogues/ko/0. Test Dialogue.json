@@ -6,20 +6,11 @@
     {
         "Kind": "Nemo#DialogueScriptSnippet",
         "Label": "나오",
-        "Text": "그러니 어떻게 하든 못 읽죠.",
-        "Options": [
-            "넘어가기"
-        ]
+        "Text": "그러니 어떻게 하든 못 읽죠."       
     },
     {
         "Kind": "Nemo#DialogueScriptSnippet",
-        "Text": "좀 많이 슬프네요",
-        "Options": [
-            "울기",
-            "안울기",
-            "슬퍼하기",
-            "넘어가기"
-        ]
+        "Text": "좀 많이 슬프네요"
     },
     {
         "Kind": "Nemo#DialogueScriptSnippet",
