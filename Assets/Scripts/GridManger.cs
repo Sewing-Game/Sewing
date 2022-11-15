@@ -22,6 +22,9 @@ public class GridManger : MonoBehaviour
     private bool[,] visit;
     private float gap = 0.7f;
 
+    public GameObject paintButton;
+    public GameObject symmetricButton;
+
     void Start()
     {
         SpawnGrid();
@@ -88,6 +91,15 @@ public class GridManger : MonoBehaviour
     {
         //switch whether symmetric is present button
         symmetric = !symmetric ;
+        if (symmetric)
+        {
+            symmetricButton.GetComponent<Image>().color = new Color32(79, 32, 0, 255);
+        }
+        else
+        {
+            symmetricButton.GetComponent<Image>().color = Color.white;
+        }
+        
     }
 
     public void HandlePaintToolClick()
@@ -96,7 +108,14 @@ public class GridManger : MonoBehaviour
         if (selectedPaintTool) 
         {
             symmetric = false;
-        } 
+            symmetricButton.GetComponent<Image>().color = Color.white;
+
+            paintButton.GetComponent<Image>().color = new Color32(79, 32, 0, 255);
+        }
+        else
+        {
+            paintButton.GetComponent<Image>().color = Color.white;
+        }
         Debug.Log(selectedPaintTool);
     }
     
