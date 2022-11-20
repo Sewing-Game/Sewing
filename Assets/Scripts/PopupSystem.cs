@@ -42,6 +42,7 @@ public class PopupSystem : MonoBehaviour
 
     public void OnClickCancel()
     {
+        Debug.Log(this.onClickOkay);
         if(onClickCancel != null)
         {
             onClickCancel();

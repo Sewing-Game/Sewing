@@ -8,7 +8,7 @@ public class CallNextPopup : MonoBehaviour
     int count = 0;
 
 
-    public void setActivateColorPopup()
+    public void setActivatePopup()
     {
         Debug.Log(count);
         if (count == 0)
@@ -26,13 +26,15 @@ public class CallNextPopup : MonoBehaviour
         else if (count == 2)
         {
             GameObject.Find("TutorialCanvas").SetActive(false);
+            GameObject.Find("Grid Holder").GetComponent<GridManger>().EnableTrue();
+            PopupSystem.instance.popup = GameObject.Find("PopupCanvas").transform.Find("PopupSystem").transform.Find("CreateCheckPopup").gameObject;
         }
     }
 
     public void OnClickMyButton()
     {
         PopupSystem.instance.OpenPopup(
-            () => { Debug.Log("okay"); },
-            () => { Debug.Log("noooooo"); });
+            () => { },
+            () => { });
     }
 }

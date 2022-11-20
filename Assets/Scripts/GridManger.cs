@@ -28,6 +28,7 @@ public class GridManger : MonoBehaviour
     void Start()
     {
         SpawnGrid();
+        EnableFalse();
     }
 
     void SpawnGrid()
@@ -60,16 +61,31 @@ public class GridManger : MonoBehaviour
                 });
             }
         }
-        //create pixel grid renderer
-        //float initXPos = -0.5f;
-        //for (int i = 0; i < (gridSize + 1); i++)
-        //{   
-        //    Create Horizontal, Vertical Grid Lines
-        //    Instantiate(GridLineObject, new Vector3(initXPos + i, 19.5f, -1), Quaternion.identity, transform);
-        //    Instantiate(GridLineObject, new Vector3(19.5f, initXPos + i, -1), Quaternion.Euler(0,0,90), transform);
-        //}
     }
-    // OnClick function to apply to paint buttons in Paint Holder
+
+
+    public void EnableFalse()
+    {
+        for (int i = 0; i < gridSize; i++)
+        {
+            for (int j = 0; j < gridSize; j++)
+            {
+                colorArray[i][j].GetComponent<BoxCollider2D>().enabled = false;
+            }
+        }
+    }
+
+    public void EnableTrue()
+    {
+        for (int i = 0; i < gridSize; i++)
+        {
+            for (int j = 0; j < gridSize; j++)
+            {
+                colorArray[i][j].GetComponent<BoxCollider2D>().enabled = true;
+            }
+        }
+    }
+
     public void HandleColorClick(Image thisColor)
     {
         currentColor = thisColor.color;
@@ -170,6 +186,7 @@ public class GridManger : MonoBehaviour
         //cube.GetComponent<Renderer>().material.mainTexture = texture;
         int rand = r.Next();
         File.WriteAllBytes(dirPath + "/" + rand + ".png", bytes);
+        GameObject.Find("GT").GetComponent<TargetImage>().CalEqualRate(texture);
     }
 }
 
