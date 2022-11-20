@@ -176,16 +176,17 @@ public class GridManger : MonoBehaviour
                 texture.SetPixel(i, j, colorArray[i][j].Color);
             }
         }
+
+        //Color[] oneDimArray = colorArray.SelectMany(item => item.Select(p => p.Color)).ToArray();
+
         System.Random r = new System.Random();
         byte[] bytes = texture.EncodeToPNG();
         var dirPath = Application.dataPath + "";
         texture.Apply();
-
-        //GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        //cube.transform.position = new Vector3(30, 30, 0);
-        //cube.GetComponent<Renderer>().material.mainTexture = texture;
         int rand = r.Next();
         File.WriteAllBytes(dirPath + "/" + rand + ".png", bytes);
+
+
         GameObject.Find("GT").GetComponent<TargetImage>().CalEqualRate(texture);
     }
 }

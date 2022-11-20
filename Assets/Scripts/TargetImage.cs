@@ -1,59 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class TargetImage : MonoBehaviour
 {
     // Start is called before the first frame update
-    private float equalRate;
+    private float _equalRate;
     private int count;
     public Sprite target;
-    private Texture2D targetTexture;
+    private Color[] targetColors;
+    private Color[] UsersColors;
 
-    public float getRate()
+    public float EualRate
     {
-        return equalRate;
+        get => _equalRate;
 
     }
 
-    void Start()
-    {
-        targetTexture = TextureFromSprite(target);
-        count = 0;
-    }
+    public void TextureFromSprite(Sprite sprite)
+    {   
+        int x = Mathf.FloorToInt(sprite.textureRect.x);
+        int y = Mathf.FloorToInt(sprite.textureRect.y);
+        int width = Mathf.FloorToInt(sprite.textureRect.width);
+        int height = Mathf.FloorToInt(sprite.texture.height);
 
+        targetColors = sprite.texture.GetPixels(x, y, width, height);
 
-    public Texture2D  TextureFromSprite(Sprite sprite)
-    {
-        if (sprite.rect.width != sprite.texture.width)
-        {
-            Texture2D newText = new Texture2D((int)sprite.rect.width, (int)sprite.rect.height);
-            Color[] newColors = sprite.texture.GetPixels((int)sprite.textureRect.x,
-                                                         (int)sprite.textureRect.y,
-                                                         (int)sprite.textureRect.width,
-                                                         (int)sprite.textureRect.height);
-            newText.SetPixels(newColors);
-            newText.Apply();
-            return newText;
-        }
-        else
-            return sprite.texture;
+        Texture2D newtx = new Texture2D(width, height);
+        newtx.SetPixels(targetColors);
     }
 
     public void CalEqualRate(Texture2D tx)
     {
-        for (int i = 0; i < 40; i++)
+        count = 0;
+        TextureFromSprite(target);
+        UsersColors = tx.GetPixels(0);
+        for (int i = 0; i < targetColors.Length; i++)
         {
-            for (int j = 0; j < 40; j++)
-            {
-                if (tx.GetPixel(i,j) != targetTexture.GetPixel(i,j))
-                {
-                    count += 1;
-                }
-            }
+            if (targetColors[i] == UsersColors[i]) count += 1;
         }
 
-        equalRate = ((160-count) / 160f) * 100f;
-        Debug.Log(equalRate);
+        _equalRate = (count) / 1600f * 100f;
     }
 }

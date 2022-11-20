@@ -6,7 +6,7 @@ public class ClickCreateButton : MonoBehaviour
 {
     public void OnClickMyButton()
     {
-        //GameObject.Find("Grid Holder").GetComponent<GridManger>().EnableFalse();
+        GameObject.Find("Grid Holder").GetComponent<GridManger>().EnableFalse();
         PopupSystem.instance.OpenPopup(
             () => 
             { 

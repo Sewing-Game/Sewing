@@ -25,28 +25,22 @@ public class PopupSystem : MonoBehaviour
 
     public void OpenPopup (Action onClickOkay, Action onClickCancel)
     {
-        this.onClickOkay = onClickOkay;
-        this.onClickCancel = onClickCancel;
+        instance.onClickOkay = onClickOkay;
+        instance.onClickCancel = onClickCancel;
         popup.SetActive(true);
     }
 
     public void OnClickOkay()
     {
-        if(onClickOkay != null)
-        {
-            onClickOkay();
-        }
+        instance.onClickOkay?.Invoke();
         ClosePopup();
         popup.SetActive(false);
     }
 
     public void OnClickCancel()
     {
-        Debug.Log(this.onClickOkay);
-        if(onClickCancel != null)
-        {
-            onClickCancel();
-        }
+        Debug.Log(instance.onClickOkay);
+        instance.onClickCancel?.Invoke();
         ClosePopup();
         popup.SetActive(false);
     }
