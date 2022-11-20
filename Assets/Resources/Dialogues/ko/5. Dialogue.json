@@ -1,0 +1,32 @@
+[
+    {
+        "Kind": "Nemo#DialogueScriptSnippet",
+        "Label": "제넌",
+        "Text": "어이! 너가 새로 이사 온 사람인가?"
+    },
+    {
+        "Kind": "Nemo#DialogueScriptSnippet",
+        "Label": "제넌",
+        "Text": "[ 의상실 이름 ]…?, 마을에 의상실이 새로 생긴다더니.. 너 같은 애송이가 주인이라고?\n너 이름이…\n아니다 애송이 이름은 알 필요도 없지."
+    },
+    {
+        "Kind": "Nemo#DialogueScriptSnippet",
+        "Label": "제넌",
+        "Text": "뭐야, 그 표정은.. 기분 나빴나?"
+    },
+    {
+        "Kind": "Nemo#DialogueScriptSnippet",
+        "Label": "제넌",
+        "Text": "나쁜 의미는 아니었다고! 그저..\n그저 너 같은 애송이들이 ‘여름 민소매 패션’에 대해 철학적인 접근을 할 수 있을 리 없거든."
+    },
+    {
+        "Kind": "Nemo#DialogueScriptSnippet",
+        "Label": "제넌",
+        "Text": "소매는 말이야 주로 집에서 입지만, 그 자체로 아주 아름답고 우아한 멋이 있거든.\n애송이지만 그래도 의상실 주인이라고 하니, 실력 좀 구경해볼까?"
+    },
+    {
+        "Kind": "Nemo#DialogueScriptSnippet",
+        "Label": "제넌",
+        "Text": "이 그림대로 나의 ‘아름답고도 우아하고 멋진 민소매’를 만들어줘\n얼마나 잘 만드는지는 두고 보자고~"
+    }
+]
