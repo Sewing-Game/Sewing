@@ -6,17 +6,20 @@ using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour
 {
     private int itemCount; // acquired item's number
+    private string clothkind="None";
     private Image slotImg;
     private string itemName="None";
     private Text cnt;
     private Font m_font;
     private Categories category;
-
+    private Button btn;
+    private GameObject kind;
 
     void Start(){
         m_font = Resources.GetBuiltinResource<Font>("Arial.ttf");
         slotImg = transform.Find("item_Icon").gameObject.GetComponent<Image>();
         cnt = transform.Find("item_count").gameObject.GetComponent<Text>();
+        kind = transform.Find("Clothkind").gameObject;
     }
 
     public Categories getItemCategory(){
@@ -37,6 +40,7 @@ public class InventorySlot : MonoBehaviour
     {
         itemName = _item.getItemName();
         itemCount = _item.getCNT();
+        clothkind = _item.getKind();
         category = _item.getCategory();
         slotImg.sprite = _item.getItemImage();
         cnt.color = Color.black;
@@ -45,6 +49,13 @@ public class InventorySlot : MonoBehaviour
         if(itemCount>1)
         {
             cnt.text = itemCount.ToString();
+        }
+        if(clothkind!="None"){
+            kind.SetActive(true);
+            kind.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/"+clothkind);
+        }
+        else{
+            kind.SetActive(false);
         }
     }
 

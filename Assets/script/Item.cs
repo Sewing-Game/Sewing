@@ -7,6 +7,7 @@ public class Item : MonoBehaviour
 {
     //Assign thie field in Inspector window
     [SerializeField] private Categories category;
+    [SerializeField] private string Clothkind = "None";
     [SerializeField] private string itemName;
     [SerializeField] private Sprite itemImage;
     [SerializeField] private int cnt=1;
@@ -29,6 +30,10 @@ public class Item : MonoBehaviour
 
     public void AddCount(){
         cnt+=1;
+    }
+
+    public string getKind(){
+        return Clothkind;
     }
 
 }
