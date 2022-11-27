@@ -1,0 +1,7 @@
+[
+    {
+        "Kind": "Nemo#DialogueScriptSnippet",
+        "Label": "${PlayerName}",
+        "Text": "정식 오픈전에 손님이 오다니.. 정말 정신없는 하루였어!\n벌써 시간이 이렇게 됐잖아! 오늘은 자러 가야지."
+    }
+]

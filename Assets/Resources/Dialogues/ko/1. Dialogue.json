@@ -1,0 +1,7 @@
+[
+    {
+        "Kind": "Nemo#DialogueScriptSnippet",
+        "Label": "주인공",
+        "Text": "여기가 나의 꿈, 나의 의상실, ${StoreName}! 너무 설렌다!"
+    }
+]
