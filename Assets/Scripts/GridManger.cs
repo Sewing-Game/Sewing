@@ -110,6 +110,8 @@ public class GridManger : MonoBehaviour
         if (symmetric)
         {
             symmetricButton.GetComponent<Image>().color = new Color32(79, 32, 0, 255);
+            if (selectedPaintTool == true) HandlePaintToolClick();
+            
         }
         else
         {
