@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.unity.2d.sprite": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
     "com.unity.collab-proxy": {
       "version": "1.17.6",
       "depth": 0,
@@ -29,7 +35,7 @@
       "source": "builtin",
       "dependencies": {
         "com.unity.ide.visualstudio": "2.0.16",
-        "com.unity.ide.rider": "3.0.15",
+        "com.unity.ide.rider": "3.0.16",
         "com.unity.ide.vscode": "1.2.5",
         "com.unity.editorcoroutines": "1.0.0",
         "com.unity.performance.profile-analyzer": "1.1.1",
@@ -38,7 +44,7 @@
       }
     },
     "com.unity.ide.rider": {
-      "version": "3.0.15",
+      "version": "3.0.16",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -77,7 +83,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.services.core": {
+<<<<<<< HEAD
+      "version": "1.6.0",
+=======
       "version": "1.5.2",
+>>>>>>> 2f771bd0fcb561977939e3b70f0b6dfec8ce042a
       "depth": 1,
       "source": "registry",
       "dependencies": {
