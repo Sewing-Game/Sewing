@@ -83,7 +83,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.services.core": {
+<<<<<<< HEAD
       "version": "1.6.0",
+=======
+      "version": "1.5.2",
+>>>>>>> 2f771bd0fcb561977939e3b70f0b6dfec8ce042a
       "depth": 1,
       "source": "registry",
       "dependencies": {
