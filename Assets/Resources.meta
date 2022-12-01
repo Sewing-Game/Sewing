@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Primer.meta
-guid: 79c52a3f2bc655e4ebec06ed997ea1bf
-========
-guid: 3484aecb0940d514b9e9cf768b5fc08d
->>>>>>>> 2f771bd0fcb561977939e3b70f0b6dfec8ce042a:Assets/Resources.meta
+guid: f2cc5eb7b6d31454eaf13cd6f4d57980
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

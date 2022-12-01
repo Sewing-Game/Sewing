@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Prefabs.meta
-guid: 6f764518ae5517449b44cd7bf99108cd
-========
 guid: 09437abff96fe814690a11931da43032
->>>>>>>> 2f771bd0fcb561977939e3b70f0b6dfec8ce042a:Assets/DialogueScriptManager.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
